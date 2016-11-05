@@ -1,7 +1,7 @@
 # Dplyr
 Davide Romano  
 
-##DataCamp notes
+#DataCamp notes
 
 
 
@@ -201,5 +201,94 @@ head(arrange(hflights,DepDelay))
 ## #   AirTime <int>, ArrDelay <int>, DepDelay <int>, Origin <chr>,
 ## #   Dest <chr>, Distance <int>, TaxiIn <int>, TaxiOut <int>,
 ## #   Cancelled <int>, CancellationCode <chr>, Diverted <int>
+```
+
+###`summarise()`
+
+Example of `summarise()` function.
+
+
+```r
+summarise(hflights, min_dist = min(Distance),max_dist = max(Distance))
+```
+
+```
+## # A tibble: 1 × 2
+##   min_dist max_dist
+##      <int>    <int>
+## 1       79     3904
+```
+
+R contains many aggregating functions, as `dplyr` calls them:
+
+* `min(x)` - minimum value of vector x.
+* `max(x)` - maximum value of vector x.
+* `mean(x)` - mean value of vector x.
+* `median(x)` - median value of vector x.
+* `quantile(x, p)` - pth quantile of vector x.
+* `sd(x)` - standard deviation of vector x.
+* `var(x)` - variance of vector x.
+* `IQR(x)` - Inter Quartile Range (IQR) of vector x.
+* `diff(range(x))` - total range of vector x.
+
+An example to summarise the longest `Distance` for `diverted` flights.
+
+
+```r
+summarise(filter(hflights, Diverted==1), max_div=max(Distance))
+```
+
+```
+## # A tibble: 1 × 1
+##   max_div
+##     <int>
+## 1    3904
+```
+
+`dplyr` provides several helpful aggregate functions:
+
+* `first(x)` - The first element of vector x.
+* `last(x)` - The last element of vector x.
+* `nth(x, n)` - The nth element of vector x.
+* `n()` - The number of rows in the data.frame or group of observations that summarise() describes.
+* `n_distinct(x)` - The number of unique values in vector x.
+* `sum()`
+* `mean()`
+
+Example:
+
+
+```r
+summarise(hflights, n_obs = n(), n_carrier = n_distinct(UniqueCarrier), n_dest = n_distinct(Dest))
+```
+
+```
+## # A tibble: 1 × 3
+##    n_obs n_carrier n_dest
+##    <int>     <int>  <int>
+## 1 227496        15    116
+```
+
+<br>
+
+##Pipes `%>%`
+
+The following two commands that are completely equivalent:
+
+
+```r
+mean(c(1, 2, 3, NA), na.rm = TRUE)
+```
+
+```
+## [1] 2
+```
+
+```r
+c(1, 2, 3, NA) %>% mean(na.rm = TRUE)
+```
+
+```
+## [1] 2
 ```
 
