@@ -1,0 +1,83 @@
+---
+title: "Dplyr"
+author: "Davide Romano"
+output: 
+  html_document: 
+    keep_md: yes
+---
+
+##DataCamp notes
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Load `dplyr` package and dataset `hflights`.
+
+```{r, message=FALSE, warning=FALSE}
+library(dplyr)
+library(hflights)
+```
+
+Convert data.frame into a tbl.
+
+```{r}
+hflights <- tbl_df(hflights)
+hflights
+```
+
+`Glimpse()` on tbl is similar to `str()`.
+
+```{r}
+glimpse(hflights)
+```
+
+The `dplyr` package contains five key data manipulation functions:
+
+* `select()` return a subset of the columns
+* `filter()` return a subset of the rows
+* `arrange()` reorders the rows according to single or multiple variables
+* `mutate()` add columns from existing data
+* `summarise()` reduces each group to a single row by calculating aggregate 
+
+###`select()`
+
+Example of `select()` function.
+
+```{r}
+select(hflights,ActualElapsedTime, AirTime, ArrDelay, DepDelay)
+```
+
+Helper functions that can help to select groups:
+
+* `starts_with("X")`
+* `ends_with("X")`
+* `contains("X")`
+* `matches("X")`
+* `num_range("x", 1:5)`
+* `one_of(x)`
+
+###`mutate()`
+
+Example of `mutate()` function.
+
+```{r}
+mutate(hflights, ActualGroundTime = ActualElapsedTime - AirTime)
+```
+
+###`filter()`
+
+Example of `filter()` function.
+
+```{r}
+filter(hflights,Distance > 1000)
+```
+
+###`arrange()`
+
+Example of `arrange()` function.
+
+```{r}
+head(arrange(hflights,DepDelay))
+```
+
