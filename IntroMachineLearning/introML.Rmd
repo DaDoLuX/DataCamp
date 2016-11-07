@@ -1,0 +1,19 @@
+---
+title: "Introduction to Machine Learning"
+author: "Davide Romano"
+output: 
+  html_document: 
+    keep_md: yes
+---
+
+#DataCamp notes
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Intro.
+
+```{r, message=FALSE, warning=FALSE}
+library()
+```
