@@ -1,2 +1,4 @@
 # DataCamp
-Notes from DataCamp Courses
+Notes from DataCamp Courses.
+
+* [Data Manipulation in R with dplyr](dplyr/)
