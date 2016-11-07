@@ -134,3 +134,15 @@ mean(c(1, 2, 3, NA), na.rm = TRUE)
 c(1, 2, 3, NA) %>% mean(na.rm = TRUE)
 ```
 
+<br>
+
+##`group_by()`
+
+`group_by()` lets you define groups within your data set.
+
+```{r}
+hflights %>%
+  group_by(UniqueCarrier) %>%
+  summarise(p_canc = mean(Cancelled == 1) * 100) %>%
+  arrange(p_canc)
+```

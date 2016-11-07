@@ -324,6 +324,33 @@ hflights</code></pre>
 <pre><code>## [1] 2</code></pre>
 <pre class="r"><code>c(1, 2, 3, NA) %&gt;% mean(na.rm = TRUE)</code></pre>
 <pre><code>## [1] 2</code></pre>
+<p><br></p>
+</div>
+<div id="group_by" class="section level2">
+<h2><code>group_by()</code></h2>
+<p><code>group_by()</code> lets you define groups within your data set.</p>
+<pre class="r"><code>hflights %&gt;%
+  group_by(UniqueCarrier) %&gt;%
+  summarise(p_canc = mean(Cancelled == 1) * 100) %&gt;%
+  arrange(p_canc)</code></pre>
+<pre><code>## # A tibble: 15 × 2
+##    UniqueCarrier    p_canc
+##            &lt;chr&gt;     &lt;dbl&gt;
+## 1             AS 0.0000000
+## 2             CO 0.6782614
+## 3             F9 0.7159905
+## 4             FL 0.9817672
+## 5             US 1.1268986
+## 6             YV 1.2658228
+## 7             OO 1.3946828
+## 8             XE 1.5495599
+## 9             WN 1.5504047
+## 10            DL 1.5903067
+## 11            UA 1.6409266
+## 12            AA 1.8495684
+## 13            B6 2.5899281
+## 14            MQ 2.9044750
+## 15            EV 3.4482759</code></pre>
 </div>
 </div>
 
